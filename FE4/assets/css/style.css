@@ -69,29 +69,13 @@ a:hover {
   height: 100%;
 }
 
-.active-patron {
+.active-management {
   position: relative;
   height: 70px;
   background: rgba(196, 196, 196, 0.7);
 }
 
-.active-patron::after {
-  content: "";
-  top: 0;
-  right: 0;
-  width: 3%;
-  position: absolute;
-  background: #ffffff;
-  height: 100%;
-}
-
-.active-books {
-  position: relative;
-  height: 70px;
-  background: rgba(196, 196, 196, 0.7);
-}
-
-.active-books::after {
+.active-management::after {
   content: "";
   top: 0;
   right: 0;
@@ -198,12 +182,12 @@ a:hover {
     width: 6px;
   }
   
-  .active-books {
-    height: 55px;
+  .active-management {
+    height: 52px;
   }
 
-  .active-patron {
-    height: 55px;
+  .active-management::after {
+    width: 6px;
   }
 
   .option {
