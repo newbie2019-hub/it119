@@ -4,18 +4,18 @@ var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['JAN', 'FEB', 'MARCH', 'APRIL', 'MAY', 'JUNE'],
-    datasets: [{
-      label: ['Borrowed Books', ' Returned Books'],
+    datasets: [
+    {
+      label: 'Borrowed Books',
       data: [7, 10, 9, 12, 13, 6],
-      backgroundColor: [
-        'rgba(117, 121, 231, .8)',
-        'rgba(154, 179, 245, .8)',
-        'rgba(117, 121, 231, .8)',
-        'rgba(154, 179, 245, .8)',
-        'rgba(117, 121, 231, .8)',
-        'rgba(154, 179, 245, .8)',
-      ],
-    }]
+      backgroundColor: 'rgba(117, 121, 231, .8)',
+    },
+    {
+      label: 'Returned Books',
+      data: [4, 7, 10, 11, 8, 8],
+      backgroundColor: 'rgba(154, 179, 245, .8)',
+    }
+  ],
   },
   options: {
     scales: {

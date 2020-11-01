@@ -45,6 +45,7 @@ a:hover {
   height: 60px;
   position: relative;
   margin-top: 1rem;
+  
 }
 
 .element {
@@ -55,6 +56,7 @@ a:hover {
 .active {
   position: relative;
   background: rgba(196, 196, 196, 0.7);
+  transition: all 500ms;
 }
 
 .active::after {
@@ -192,6 +194,10 @@ a:hover {
     height: 50px;
   }
 
+  .active::after {
+    width: 6px;
+  }
+  
   .active-books {
     height: 55px;
   }
