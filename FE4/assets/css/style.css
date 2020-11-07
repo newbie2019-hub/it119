@@ -45,7 +45,7 @@ a:hover {
   height: 60px;
   position: relative;
   margin-top: 1rem;
-  
+
 }
 
 .element {
@@ -181,7 +181,7 @@ a:hover {
   .active::after {
     width: 6px;
   }
-  
+
   .active-management {
     height: 52px;
   }
