@@ -41,7 +41,7 @@
     <a href="index.html" class="">
       <div class="element-container" :class="isActive == 'index' ? 'active': ''">
         <div class="element">
-          <img src="../assets/images/dashboard.png" height="25" class="ml-4 mt-1 position-absolute">
+          <img src="../../assets/images/dashboard.png" height="25" class="ml-4 mt-1 position-absolute">
           <p class="ml-6 mt-1 option" href="">Dashboard</p>
         </div>
       </div>
@@ -49,7 +49,7 @@
     <a href="patron.html" :class="isActive == 'patron' ? 'active-management': ''">
       <div class="element-container">
         <div class="element">
-          <img src="../assets/images/patron.png" height="25" class="ml-4 mt-2 position-absolute">
+          <img src="../../assets/images/patron.png" height="25" class="ml-4 mt-2 position-absolute">
           <p class="ml-6 option" href="">Patron Management</p>
         </div>
       </div>
@@ -57,7 +57,7 @@
     <a href="books.html" :class="isActive == 'books' ? 'active-management': ''">
       <div class="element-container">
         <div class="element">
-          <img src="../assets/images/books.png" height="25" class="ml-4 mt-2 position-absolute">
+          <img src="../../assets/images/books.png" height="25" class="ml-4 mt-2 position-absolute">
           <p class="ml-6 option" href="">Books Management</p>
         </div>
       </div>
@@ -65,7 +65,7 @@
     <a href="settings.html" :class="isActive == 'settings' ? 'active': ''">
       <div class="element-container">
         <div class="element">
-          <img src="../assets/images/settings.png" height="20" class="ml-4 mt-2 position-absolute">
+          <img src="../../assets/images/settings.png" height="20" class="ml-4 mt-2 position-absolute">
           <p class="ml-6 mt-2 option" href="">Settings</p>
         </div>
       </div>
