@@ -127,8 +127,8 @@
 </template>
 
 <script>
-import SideBar from "../../components/SideBar";
-import NavBar from "../../components/NavBar";
+import SideBar from "../../components/navigation/SideBar";
+import NavBar from "../../components/navigation/NavBar";
 
 export default {
   components: { SideBar, NavBar },
