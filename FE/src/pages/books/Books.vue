@@ -122,7 +122,11 @@ import SideBar from "../../components/navigation/SideBar";
 import NavBar from "../../components/navigation/NavBar";
 
 export default {
+  
   name: "App",
+  mounted(){
+    document.title = "Books Management"
+  },
   components: { SideBar, NavBar },
   methods: {},
   data() {

@@ -35,6 +35,7 @@ export default {
     
   },
   mounted() {
+    document.title = "Dashboard"
     this.$nextTick(() => {
       var ctx = this.$refs.barChart.getContext("2d");
       new Chart(ctx, {

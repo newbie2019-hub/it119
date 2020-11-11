@@ -131,6 +131,9 @@ import SideBar from "../../components/navigation/SideBar";
 import NavBar from "../../components/navigation/NavBar";
 
 export default {
+  mounted(){
+    document.title = "Patron Management"
+  },
   components: { SideBar, NavBar },
   methods: {},
   data() {

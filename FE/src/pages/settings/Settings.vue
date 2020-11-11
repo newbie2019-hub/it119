@@ -10,6 +10,9 @@ import SideBar from "../../components/navigation/SideBar";
 import NavBar from "../../components/navigation/NavBar";
 
 export default {
+  mounted(){
+    document.title = "Settings"
+  },
   components: { SideBar, NavBar },
   methods: {},
 };
