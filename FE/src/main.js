@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Dashboard from './pages/index/Dashboard.vue'
+import Dashboard from './components/pages/index/Dashboard.vue'
 // import Patron from './pages/patron/Patron.vue'
 // import Books from './pages/books/Books.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'

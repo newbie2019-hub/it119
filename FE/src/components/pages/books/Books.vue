@@ -118,8 +118,8 @@
   </div>
 </template>
 <script>
-import SideBar from "../../components/navigation/SideBar";
-import NavBar from "../../components/navigation/NavBar";
+import SideBar from "../../navigation/SideBar";
+import NavBar from "../../navigation/NavBar";
 
 export default {
   
@@ -169,5 +169,5 @@ export default {
 </script>
 
 <style>
-@import "../../assets/css/style.css";
+@import "../../../assets/css/style.css";
 </style>
