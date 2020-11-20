@@ -38,6 +38,7 @@
       <path d='M37.45,39.65v20.7a10.35,10.35,0,0,0,0-20.7Z' style='fill:#fff' />
       <circle cx='151.52' cy='44.54' r='2.2' style='fill:#fff' class="option"/>
     </svg>
+    <router-link to="/">
     <a href="index.html" class="">
       <div class="element-container" :class="isActive == 'index' ? 'active': ''">
         <div class="element">
@@ -46,6 +47,8 @@
         </div>
       </div>
     </a>
+    </router-link>
+    <router-link to="/patron">
     <a href="patron.html" :class="isActive == 'patron' ? 'active-management': ''">
       <div class="element-container">
         <div class="element">
@@ -54,6 +57,8 @@
         </div>
       </div>
     </a>
+    </router-link>
+    <router-link to="/books">
     <a href="books.html" :class="isActive == 'books' ? 'active-management': ''">
       <div class="element-container">
         <div class="element">
@@ -62,6 +67,8 @@
         </div>
       </div>
     </a>
+    </router-link>
+    <router-link to="/settings">
     <a href="settings.html" :class="isActive == 'settings' ? 'active': ''">
       <div class="element-container">
         <div class="element">
@@ -70,6 +77,7 @@
         </div>
       </div>
     </a>
+    </router-link>
   </div>
 </template>
 <script>
