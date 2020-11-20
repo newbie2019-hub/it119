@@ -13,17 +13,17 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/settings/Settings')
+    component: () => import(/* webpackChunkName: "settings" */ '../components/pages/settings/Settings')
   },
   {
     path: '/books',
     name: 'Books Management',
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/books/Books')
+    component: () => import(/* webpackChunkName: "books" */ '../components/pages/books/Books')
   },
   {
     path: '/patron',
     name: 'Patron Management',
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/patron/Patron')
+    component: () => import(/* webpackChunkName: "patron" */ '../components/pages/patron/Patron')
   },
 ]
 
