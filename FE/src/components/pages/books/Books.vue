@@ -35,20 +35,20 @@
                       <td>{{ book.category }}</td>
                       <td>
                         <img
-                          src="../../assets/images/edit.png"
+                          src="../../../assets/images/edit.png"
                           class="mr-2 cursor-pointer"
                           height="25"
                         /><a type="button" @click="$bvModal.show('deleteModal')"
                           ><img
-                            src="../../assets/images/delete.png"
+                            src="../../../assets/images/delete.png"
                             class="mr-2"
                             height="16" /></a
                         ><img
-                          src="../../assets/images/borrow.png"
+                          src="../../../assets/images/borrow.png"
                           class="cursor-pointer mr-2"
                           height="20"
                         /><img
-                          src="../../assets/images/return.png"
+                          src="../../../assets/images/return.png"
                           class="cursor-pointer"
                           height="20"
                         />
@@ -167,7 +167,3 @@ export default {
   },
 };
 </script>
-
-<style>
-@import "../../../assets/css/style.css";
-</style>
