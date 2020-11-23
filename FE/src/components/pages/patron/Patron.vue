@@ -33,7 +33,7 @@
                       <td>{{ patron.date }}</td>
                       <td>
                         <img
-                          src="../../../assets/images/edit.png"
+                          src="@/assets/images/edit.png"
                           class="mr-2"
                           height="25"
                         /><a
@@ -42,7 +42,7 @@
                           data-target="#deleteModal"
                           @click="$bvModal.show('deleteModal')"
                           ><img
-                            src="../../../assets/images/delete.png"
+                            src="@/assets/images/delete.png"
                             class="mr-2"
                             height="16"
                         /></a>
@@ -127,8 +127,8 @@
 </template>
 
 <script>
-import SideBar from "../../navigation/SideBar";
-import NavBar from "../../navigation/NavBar";
+import SideBar from "@/components/navigation/SideBar";
+import NavBar from "@/components/navigation/NavBar";
 
 export default {
   mounted(){
