@@ -72,7 +72,7 @@
         >
           <div class="element">
             <img
-              src="../../assets/images/dashboard.png"
+              src="@/assets/images/dashboard.png"
               height="25"
               class="ml-4 mt-1 position-absolute"
             />
@@ -88,7 +88,7 @@
       <div class="element-container">
         <div class="element">
           <img
-            src="../../assets/images/patron.png"
+            src="@/assets/images/patron.png"
             height="25"
             class="ml-4 mt-2 position-absolute"
           />
@@ -103,7 +103,7 @@
       <div class="element-container">
         <div class="element">
           <img
-            src="../../assets/images/books.png"
+            src="@/assets/images/books.png"
             height="25"
             class="ml-4 mt-2 position-absolute"
           />
@@ -115,7 +115,7 @@
       <div class="element-container">
         <div class="element">
           <img
-            src="../../assets/images/settings.png"
+            src="@/assets/images/settings.png"
             height="20"
             class="ml-4 mt-2 position-absolute"
           />
