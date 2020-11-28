@@ -64,12 +64,9 @@
         class="option"
       />
     </svg>
-    <router-link to="/">
-      <a href="index.html" class="">
+    <router-link to="/" :class="getRoute == '/' ? 'active' : ''">
         <div
-          class="element-container"
-          :class="isActive == 'index' ? 'active' : ''"
-        >
+          class="element-container">
           <div class="element">
             <img
               src="@/assets/images/dashboard.png"
@@ -79,12 +76,8 @@
             <p class="ml-6 mt-1 option" href="">Dashboard</p>
           </div>
         </div>
-      </a>
     </router-link>
-    <router-link
-      to="/patron"
-      :class="isActive == 'patron' ? 'active-management' : ''"
-    >
+    <router-link to="/patron" :class="getRoute == '/patron' ? 'active-management' : ''">
       <div class="element-container">
         <div class="element">
           <img
@@ -98,7 +91,7 @@
     </router-link>
     <router-link
       to="/books"
-      :class="isActive == 'books' ? 'active-management' : ''"
+      :class="getRoute == '/books' ? 'active-management' : ''"
     >
       <div class="element-container">
         <div class="element">
@@ -111,7 +104,7 @@
         </div>
       </div>
     </router-link>
-    <router-link to="/settings" :class="isActive == 'settings' ? 'active' : ''">
+    <router-link to="/settings" :class="getRoute == '/settings' ? 'active' : ''">
       <div class="element-container">
         <div class="element">
           <img
@@ -127,14 +120,20 @@
 </template>
 <script>
 export default {
-  props: {
-    isActive: String,
-  },
   data() {
     return {
       data: "",
     };
   },
-  mounted() {},
+  mounted() {
+
+  },
+  methods: {
+  },
+  computed: {
+    getRoute: function(){
+      return this.$route.path
+    }
+  }
 };
 </script>

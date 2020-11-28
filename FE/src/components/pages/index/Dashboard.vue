@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <SideBar isActive="index"/>
-    <NavBar />
-    <div class="main">
       <div class="container pt-4">
         <h6 class="text-muted">Here is your summary</h6>
         <div class="row mt-5">
@@ -16,18 +13,15 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
-import SideBar from "@/components/navigation/SideBar";
-import NavBar from "@/components/navigation/NavBar";
 import BarChart from "@/components/charts/BarChart"
 import DoughnutChart from "@/components/charts/DoughnutChart"
 export default {
   
-  components: { SideBar, NavBar, BarChart, DoughnutChart},
+  components: { BarChart, DoughnutChart},
   data(){
     return {
       height: 300,

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <SideBar isActive="books" />
-    <NavBar />
-    <div class="main">
       <div class="container pt-4 mb-3">
         <h6 class="text-muted">Here are your books</h6>
         <div class="row mt-2">
@@ -10,7 +7,7 @@
             <div class="row justify-content-end mr-1 mb-3">
               <b-button
                 variant="btn rounded-pill btn-outline-primary btn-sm"
-                v-b-modal.addModal
+                v-on:click="showAddModal"
               >
                 Add Books
               </b-button>
@@ -34,11 +31,13 @@
                       <td>{{ book.copies }}</td>
                       <td>{{ book.category }}</td>
                       <td>
+                        <a type="button" v-on:click="showEditModal(i)"
+                          >
                         <img
                           src="@/assets/images/edit.png"
                           class="mr-2 cursor-pointer"
                           height="25"
-                        /><a type="button" @click="$bvModal.show('deleteModal')"
+                        /></a><a type="button" v-on:click="showDeleteModal(i)"
                           ><img
                             src="@/assets/images/delete.png"
                             class="mr-2"
@@ -73,62 +72,93 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
 
     <b-modal id="addModal" centered title="Add Book">
       <form class="pl-5 pr-5">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="email" class="form-control" id="name" placeholder="" />
+          <input type="text" v-model="input.name" class="form-control" id="name" placeholder="" />
         </div>
         <div class="form-group">
           <label for="author">Author</label>
-          <input type="email" class="form-control" id="author" placeholder="" />
+          <input type="text" v-model="input.author" class="form-control" id="author" placeholder="" />
         </div>
         <div class="form-group">
           <label for="copies">Copies</label>
-          <input type="email" class="form-control" id="copies" placeholder="" />
+          <input v-model="input.copies" class="form-control" id="copies" placeholder="" type="number"/>
         </div>
         <div class="form-group">
           <label for="customSelect">Category</label>
-          <select id="customSelect" name="cars" class="custom-select">
-            <option selected>Please select a category</option>
-            <option value="volvo">Fiction</option>
-            <option value="fiat">Horror</option>
-            <option value="audi">Novel</option>
-            <option value="audi">Biography</option>
+          <select id="customSelect" v-model="input.category" name="cars" class="custom-select">
+            <option selected disabled>Please select a category</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Horror">Horror</option>
+            <option value="Novel">Novel</option>
+            <option value="Biography">Biography</option>
           </select>
         </div>
       </form>
-      <template #modal-footer="{ ok }">
-        <b-button size="sm" variant="primary" @click="ok()">
+      <template #modal-footer>
+        <b-button size="sm" variant="primary" v-on:click="saveBook">
           Add Book
+        </b-button>
+      </template>
+    </b-modal>
+
+    <!--- EDIT MODAL --->
+    <b-modal id="editModal" centered title="Edit Book">
+      <form class="pl-5 pr-5">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" v-model="editBook.name" class="form-control" id="name" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" v-model="editBook.author" class="form-control" id="author" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label for="copies">Copies</label>
+          <input v-model="editBook.copies" class="form-control" id="copies" placeholder="" type="number"/>
+        </div>
+        <div class="form-group">
+          <label for="customSelect">Category</label>
+          <select id="customSelect" v-model="editBook.category" name="cars" class="custom-select">
+            <option selected disabled>Please select a category</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Horror">Horror</option>
+            <option value="Novel">Novel</option>
+            <option value="Biography">Biography</option>
+          </select>
+        </div>
+      </form>
+      <template #modal-footer = {cancel}>
+        <b-button variant="primary" size="sm" @click="cancel()"> Cancel </b-button>
+        <b-button size="sm" variant="success" v-on:click="updateBook">
+          Update Book
         </b-button>
       </template>
     </b-modal>
 
     <b-modal id="deleteModal" centered title="Confirm Delete">
       <p class="my-4">Are you sure you want to delete this book?</p>
-      <template #modal-footer="{ ok, cancel }">
+      <template #modal-footer="{ cancel }">
         <b-button variant="info" @click="cancel()"> Cancel </b-button>
-        <b-button variant="danger" @click="ok()"> Confirm </b-button>
+        <b-button variant="danger" v-on:click="deleteBook"> Confirm </b-button>
       </template>
     </b-modal>
   </div>
 </template>
 <script>
-import SideBar from "@/components/navigation/SideBar";
-import NavBar from "@/components/navigation/NavBar";
-
+import {toast} from '@/assets/js/toast/vue-toast'
 export default {
-  
+  mixins: [toast],
   name: "App",
   mounted(){
     document.title = "Books Management"
   },
-  components: { SideBar, NavBar },
-  methods: {},
   data() {
     return {
       books: [
@@ -156,14 +186,73 @@ export default {
           copies: "16",
           category: "Computer Science",
         },
-        {
-          name: "C#",
-          author: "Joker",
-          copies: "12",
-          category: "Computer Science",
-        },
       ],
+      editBook: {},
+      input: {
+        name: "",
+        author: "",
+        copies: 0,
+        category: "",
+      },
+      deleteIndex: "",
+      editIndex: '',
     };
+  },
+  methods: {
+    showAddModal() {
+      this.clearFields();
+      this.$bvModal.show("addModal");
+    },
+    showDeleteModal(i) {
+      this.deleteIndex = i;
+      this.$bvModal.show("deleteModal");
+    },
+    showEditModal(i) {
+      this.editIndex = i;
+      this.editBook = ({...this.books[i]})
+      this.$bvModal.show("editModal");
+    },
+    deleteBook() {
+      this.$delete(this.books, this.deleteIndex);
+      this.$bvModal.hide("deleteModal");
+    },
+    saveBook() {
+      if(this.input.name.trim() == '')
+      return this.showErrorToast('Name of book is required!')
+      if(this.input.author.trim() == '')
+      return this.showErrorToast('Author is required!')
+      if(this.editBook.copies == '')
+      return this.showErrorToast('Copies of book should be a number')
+      if(this.input.category.trim() == '')
+      return this.showErrorToast('Category is required!')
+
+      this.books.unshift({ ...this.input });
+      this.clearFields();
+      this.$bvModal.hide("addModal");
+      this.showSuccessToast('Success','Book added successfully')
+    },
+    updateBook() {
+      if(this.editBook.name.trim() == '')
+      return this.showErrorToast('Name of book is required!')
+      if(this.editBook.author.trim() == '')
+      return this.showErrorToast('Author is required!')
+      if(this.editBook.copies.trim() == '')
+      return this.showErrorToast('Copies of book is required!')
+      if(this.editBook.copies == '')
+      return this.showErrorToast('Copies of book should be a number')
+      if(this.editBook.category.trim() == '')
+      return this.showErrorToast('Category is required!')
+
+      this.$set(this.books, this.editIndex, this.editBook)
+      this.$bvModal.hide("editModal");
+      this.showSuccessToast('Book updated successfully')
+    },
+    clearFields() {
+      this.input.firstname = "";
+      this.input.middlename = "";
+      this.input.lastname = "";
+      this.input.email = "";
+    },
   },
 };
 </script>
