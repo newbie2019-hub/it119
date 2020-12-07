@@ -22,23 +22,10 @@ import DoughnutChart from "@/components/charts/DoughnutChart"
 export default {
   
   components: { BarChart, DoughnutChart},
-  data(){
-    return {
-      height: 300,
-      width: 380
-    }
-  },
   methods: {
    
   },
   computed: {
-    chartStyle () {
-      return {
-        height: `${this.height}px`,
-        width: `${this.width}px`,
-        position: 'relative'
-      }
-    }
   },
   mounted: function() {
     document.title = "Dashboard"

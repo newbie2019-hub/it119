@@ -209,6 +209,13 @@ export default {
     return {
       patrons: [
         {
+          firstname: "Yvan",
+          middlename: "C",
+          lastname: "Sabay",
+          email: "sabayyvan2018@gmail.com",
+          date: new Date().toISOString().slice(0, 10),
+        },
+        {
           firstname: "Cirilo",
           middlename: "E",
           lastname: "Bucatcat",
@@ -220,13 +227,6 @@ export default {
           middlename: "",
           lastname: "Gabitan",
           email: "melbienri@gmail.com",
-          date: new Date().toISOString().slice(0, 10),
-        },
-        {
-          firstname: "Yvan",
-          middlename: "C",
-          lastname: "Sabay",
-          email: "sabayyvan2018@gmail.com",
           date: new Date().toISOString().slice(0, 10),
         },
         {
