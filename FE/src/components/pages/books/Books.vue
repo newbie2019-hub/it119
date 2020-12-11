@@ -248,10 +248,10 @@ export default {
       this.showSuccessToast('Book updated successfully')
     },
     clearFields() {
-      this.input.firstname = "";
-      this.input.middlename = "";
-      this.input.lastname = "";
-      this.input.email = "";
+      this.input.name = "";
+      this.input.author = "";
+      this.input.copies = 0;
+      this.input.category = "";
     },
   },
 };
