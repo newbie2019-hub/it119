@@ -250,6 +250,11 @@ export default {
     };
   },
   methods: {
+    validEmail(){
+      let regEx = /^([a-z0-9_\-.])+@([a-z0-9_\-.])+\.([a-z0-9]{2,})$/gi
+      let isEmail = regEx.test(this.input.email)
+      return isEmail
+    },
     showAddModal() {
       this.clearFields();
       this.$bvModal.show("addModal");
@@ -274,6 +279,8 @@ export default {
         return this.showErrorToast("Last Name is required!");
       if (this.input.email.trim() == "")
         return this.showErrorToast("Email is required!");
+      if(!this.validEmail())
+        return this.showErrorToast("Email is Invalid");
 
       this.patrons.unshift({ ...this.input });
       this.clearFields();
@@ -287,7 +294,9 @@ export default {
         return this.showErrorToast("Last Name is required!");
       if (this.editPatron.email.trim() == "")
         return this.showErrorToast("Email is required!");
-
+      if(!this.validEmail())
+        return this.showErrorToast("Email is Invalid");
+        
       this.$set(this.patrons, this.editIndex, this.editPatron);
       this.$bvModal.hide("editModal");
       this.showSuccessToast("Patron updated successfully");
