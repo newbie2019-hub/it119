@@ -14,17 +14,10 @@ class BorrowedBookController extends Controller
         ])->get());
     }
     
-    public function show($id){
-
-        try
-        {
-            $borrowedbook = BorrowedBook::with(['patron', 'book', 'book.category'])->where('id', $id)->firstOrFail();
-            return response()->json($borrowedbook);
-        } 
-        catch (ModelNotFoundException $exception)
-        {
-            return response()->json(['message' => 'Borrowed book not found'], 404);
-        }
+    public function show($id)
+    {
+        $borrowedbook = BorrowedBook::with(['patron', 'book', 'book.category'])->where('id', $id)->firstOrFail();
+        return response()->json($borrowedbook);
     }
 
     /**

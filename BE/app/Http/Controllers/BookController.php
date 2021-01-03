@@ -42,13 +42,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        try {
             $book = Book::with(['category:id,category'])->where('id', $id)->firstOrFail();
             return response()->json($book);
-        } catch (ModelNotFoundException $exception){
-            return response()->json(['message' => 'Book not found'], 404);
-        }
-        
     }
 
     /**
@@ -74,14 +69,10 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $book = Book::where('id', $id)->firstOrFail();
-            $book->delete();
+        $book = Book::where('id', $id)->firstOrFail();
+        $book->delete();
 
-            return response()->json(['message' => 'Book deleted successfully!']);
-        } catch (ModelNotFoundException $exception){
-            return response()->json(['message' => 'Book not found'], 404);
-        }
+        return response()->json(['message' => 'Book deleted successfully!']);
         
     }
 }
