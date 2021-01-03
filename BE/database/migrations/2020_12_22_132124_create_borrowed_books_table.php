@@ -15,9 +15,9 @@ class CreateBorrowedBooksTable extends Migration
     {
         Schema::create('borrowed_books', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patron_id')->constrained()->onDelete('cascade');
+            $table->foreignId('patron_id')->nullable()->constrained()->onDelete('cascade');
             $table->integer('copies');
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            $table->foreignId('book_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
