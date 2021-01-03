@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatronRequest;
 use App\Models\Patron;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PatronController extends Controller
@@ -23,9 +25,9 @@ class PatronController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatronRequest $request)
     {
-        return response()->json(Patron::create($request->all()));
+        return response()->json(Patron::create($request->validated()));
     }
 
     /**
@@ -36,7 +38,13 @@ class PatronController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Patron::findOrFail($id));
+        try{
+            return response()->json(Patron::findOrFail($id));
+        }
+        catch (ModelNotFoundException $exception)
+        {
+            return response()->json(['message' => 'Patron not found'], 404);
+        }
     }
 
     /**
@@ -46,9 +54,9 @@ class PatronController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatronRequest $request, $id)
     {
-        return response()->json([Patron::where('id', $id)->update($request->all())]);
+        return response()->json([Patron::where('id', $id)->update($request->validated())]);
     }
 
     /**
@@ -59,6 +67,16 @@ class PatronController extends Controller
      */
     public function destroy($id)
     {
-        return response()->json(Patron::destroy($id));
+        try{
+            $patron = Patron::where('id', $id)->firstOrFail();
+            $patron->delete();
+
+            return response()->json(['message' => 'Patron deleted successfully!']);
+        }
+        catch (ModelNotFoundException $exception)
+        {
+            return response()->json(['message' => 'Patron not found'], 404);
+        }
+        
     }
 }
