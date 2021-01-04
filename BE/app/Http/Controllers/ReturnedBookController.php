@@ -21,7 +21,7 @@ class ReturnedBookController extends Controller
         $borrowedbook = BorrowedBook::where([
             ['book_id', $request->book_id],
             ['patron_id', $request->patron_id],
-        ])->get()->firstOrFail();
+        ])->firstOrFail();
         
         if(!empty($borrowedbook))
         {
@@ -48,6 +48,7 @@ class ReturnedBookController extends Controller
 
     public function show($id)
     {
-        return response()->json(ReturnedBook::with(['book', 'book.category', 'patron'])->findOrfail($id)); 
+        $returnedbook = ReturnedBook::with(['book', 'book.category', 'patron'])->findOrfail($id);
+        return response()->json($returnedbook); 
     }
 }

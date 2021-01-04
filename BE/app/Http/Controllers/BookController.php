@@ -56,7 +56,8 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::with(['category:id,category'])->where('id', $id)->update($request->all());
+        $book = Book::with(['category:id,category'])->where('id', $id)->firstOrFail();
+        $book->update($request->all());
         return response()->json(['message' => 'Book updated successfully!', 'book' => $book]);
     }
 

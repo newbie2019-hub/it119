@@ -48,7 +48,10 @@ class PatronController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return response()->json([Patron::where('id', $id)->update($request->all())]);
+        $patron = Patron::where('id', $id)->firstOrFail();
+        $patron->update($request->all());
+        
+        return response()->json(['message' => 'Patron updated','patron'=>$patron]);
     }
 
     /**
@@ -59,6 +62,10 @@ class PatronController extends Controller
      */
     public function destroy($id)
     {
-        return response()->json(Patron::destroy($id));
+        $patron = Patron::where('id', $id)->firstOrFail();
+        $patron->delete();
+
+        return response()->json(['message' => 'Patron deleted successfully!']);
+        
     }
 }
