@@ -6,7 +6,6 @@ use App\Models\Book;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class BorrowedBookRequest extends FormRequest
@@ -39,7 +38,7 @@ class BorrowedBookRequest extends FormRequest
         
         return [
             'book_id' => 'bail|required|exists:books,id',
-            'copies' => ["lte: {$copies}", 'required', 'bail', 'gt:0'],
+            'copies' => ['required',"lte: {$copies}", 'bail', 'gt:0'],
             'patron_id' => 'exists:patrons,id',
         ];
     }
