@@ -5,12 +5,12 @@ return [
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
      */
-    'title' => null,
+    'title' => 'Library Management Api Documentation',
 
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
      */
-    'description' => '',
+    'description' => 'This is the api documentation of our laravel application for the Library Management',
 
 
     /*
@@ -46,7 +46,9 @@ return [
              * The route can be referenced by name or path here. Wildcards are supported.
              */
             'include' => [
-                // 'users.index', 'healthcheck*'
+               'books.index', 'books.store', 'books.show', 'books.update', 'books.destroy',
+               'patrons.index', 'patrons.store', 'patrons.show', 'patrons.update', 'patrons.destroy',
+               'api/categories', 'api/borrowedbook',
             ],
 
             /*
@@ -79,7 +81,7 @@ return [
                      * API calls will be made only for routes in this group matching these HTTP methods (GET, POST, etc).
                      * List the methods here or use '*' to mean all methods. Leave empty to disable API calls.
                      */
-                    'methods' => ['*'],
+                    'methods' => ['GET','PUT','DELETE','POST'],
 
                     /*
                      * Laravel config variables which should be set for the API call.
@@ -169,7 +171,7 @@ return [
      * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
      * Don't forget to enable CORS headers for your endpoints.
      */
-    'interactive' => true,
+    'interactive' => false,
 
     /*
      * How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
@@ -235,8 +237,7 @@ INTRO
      *
      */
     'example_languages' => [
-        'bash',
-        'javascript',
+        'php'
     ],
 
     /*
