@@ -24,14 +24,7 @@ class BorrowedBookRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * [POST] Stores Borrowedbook.
      * 
-     * @bodyParam book_id integer required Book id must exist in the book table. Example: 1
-     * @bodyParam patron_id integer required Must exist in the patron table.
-     * @bodyParam copies integer required Must not exceed copies of book.
-     * 
-
      * @return array
      */
     public function rules(Request $request)
@@ -48,23 +41,6 @@ class BorrowedBookRequest extends FormRequest
             'book_id' => 'bail|required|exists:books,id',
             'copies' => ["lte: {$copies}", 'required', 'bail', 'gt:0'],
             'patron_id' => 'exists:patrons,id',
-        ];
-    }
-
-    public function bodyParameters()
-    {
-        return [
-            'book_id' => [
-                'description' => 'ID of the book.',
-                'example' => 1,
-            ],
-            'copies' => [
-                'description' => 'Copies to be borrowed',
-                'example' => 15,
-            ],
-            'patron_id' => [
-                'description' => 'ID of the patron that borrowes the book',
-            ],
         ];
     }
 

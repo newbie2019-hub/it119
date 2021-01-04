@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BorrowedBookRequest;
 use App\Models\BorrowedBook;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class BorrowedBookController extends Controller
      * [POST] Stores Borrowedbook.
      * 
      */
-    public function store(Request $request){
+    public function store(BorrowedBookRequest $request){
         //Store to database
         $create_borrowed = BorrowedBook::create($request->only(['book_id', 'copies', 'patron_id']));
         
