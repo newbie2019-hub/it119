@@ -25,14 +25,14 @@ class ReturnedBookRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
-        $borrowed = BorrowedBook::where('book_id', $request->book_id)->where('patron_id', $request->patron_id)->first();
+        $borrowed = BorrowedBook::where('book_id', request()->get('book_id'))->where('patron_id', request()->get('patron_id'))->first();
 
         if (!empty($borrowed)) {
             $copies = $borrowed->copies;
         } else {
-            $copies = $request->copies;
+            $copies = request()->get('copies');
         }
 
         return [
@@ -41,7 +41,6 @@ class ReturnedBookRequest extends FormRequest
             'patron_id' => 'exists:borrowed_books,patron_id'
         ];
     }
-
     /**
      * Get the error messages for the defined validation rules.
      *

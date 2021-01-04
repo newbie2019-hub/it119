@@ -23,7 +23,7 @@ class ReturnedBookController extends Controller
         $borrowedbook = BorrowedBook::where([
             ['book_id', $request->book_id],
             ['patron_id', $request->patron_id],
-        ])->get()->firstOrFail();
+        ])->firstOrFail();
 
         if (!empty($borrowedbook)) {
             if ($borrowedbook->copies == $request->copies) {

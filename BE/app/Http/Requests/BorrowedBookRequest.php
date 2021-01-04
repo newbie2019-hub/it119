@@ -26,14 +26,14 @@ class BorrowedBookRequest extends FormRequest
      * 
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
-        $book = Book::find($request->book_id);
+        $book = Book::find(request()->get('book_id'));
         if(!empty($book)){
             $copies = $book->copies;
         }
         else{
-            $copies = $request->copies;
+            $copies = request()->get('copies');
         }
         
         return [
