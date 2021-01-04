@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         return response()->json(Book::create($request->all()));
     }
@@ -42,8 +43,12 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        try {
             $book = Book::with(['category:id,category'])->where('id', $id)->firstOrFail();
             return response()->json($book);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
     }
 
     /**
@@ -54,11 +59,16 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {
-        $book = Book::with(['category:id,category'])->where('id', $id)->firstOrFail();
-        $book->update($request->all());
-        return response()->json(['message' => 'Book updated successfully!', 'book' => $book]);
+        try {
+            $book = Book::with(['category:id,category'])->where('id', $id)->firstOrFail();
+            $book->update($request->validated());
+            return response()->json(['message' => 'Book updated successfully!', 'book' => $book]);
+            
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
     }
 
     /**
@@ -70,10 +80,13 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::where('id', $id)->firstOrFail();
-        $book->delete();
+        try {
+            $book = Book::where('id', $id)->firstOrFail();
+            $book->delete();
 
-        return response()->json(['message' => 'Book deleted successfully!']);
-        
+            return response()->json(['message' => 'Book deleted successfully!']);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
     }
 }

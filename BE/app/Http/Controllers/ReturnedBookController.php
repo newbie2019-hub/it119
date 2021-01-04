@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReturnedBookRequest;
 use App\Models\BorrowedBook;
 use App\Models\ReturnedBook;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
@@ -15,7 +17,7 @@ class ReturnedBookController extends Controller
         return response()->json(ReturnedBook::with(['book', 'patron', 'book.category'])->get());
     }
 
-    public function store(Request $request)
+    public function store(ReturnedBookRequest $request)
     {
         //Retrieve first the borrowed book
         $borrowedbook = BorrowedBook::where([
@@ -48,7 +50,11 @@ class ReturnedBookController extends Controller
 
     public function show($id)
     {
-        $returnedbook = ReturnedBook::with(['book', 'book.category', 'patron'])->findOrfail($id);
-        return response()->json($returnedbook); 
+        try {
+            $returnedbook = ReturnedBook::with(['book', 'book.category', 'patron'])->findOrfail($id);
+            return response()->json($returnedbook); 
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(['message' => 'Returned book not found'], 404);
+        }
     }
 }

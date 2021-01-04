@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BorrowedBookRequest;
 use App\Models\BorrowedBook;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -16,15 +17,22 @@ class BorrowedBookController extends Controller
     
     public function show($id)
     {
-        $borrowedbook = BorrowedBook::with(['patron', 'book', 'book.category'])->where('id', $id)->firstOrFail();
-        return response()->json($borrowedbook);
+        try
+        {
+            $borrowedbook = BorrowedBook::with(['patron', 'book', 'book.category'])->where('id', $id)->firstOrFail();
+            return response()->json($borrowedbook);
+        } 
+        catch (ModelNotFoundException $exception)
+        {
+            return response()->json(['message' => 'Borrowed book not found'], 404);
+        }
     }
 
     /**
      * [POST] Stores Borrowedbook.
      * 
      */
-    public function store(Request $request){
+    public function store(BorrowedBookRequest $request){
         //Store to database
         $create_borrowed = BorrowedBook::create($request->only(['book_id', 'copies', 'patron_id']));
         
