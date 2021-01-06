@@ -19,15 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('patrons', PatronController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
-Route::resource('books', BookController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+Route::apiResource('patrons', PatronController::class);
+Route::apiResource('books', BookController::class);
 
-Route::get('/borrowedbook', [BorrowedBookController::class, 'index']);
-Route::get('/borrowedbook/{id}', [BorrowedBookController::class, 'show']);
-Route::post('/borrowedbook', [BorrowedBookController::class, 'store']);
-
-Route::post('/returnedbook', [ReturnedBookController::class, 'store']);
-Route::get('/returnedbook/{id}', [ReturnedBookController::class, 'show']);
-Route::get('/returnedbook', [ReturnedBookController::class, 'index']);
+Route::resource('/borrowedbook', BorrowedBookController::class);
+Route::resource('/returnedbook', ReturnedBookController::class);
 
 Route::get('/categories', [CategoryController::class, 'index']);
