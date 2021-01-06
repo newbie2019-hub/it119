@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('patrons', PatronController::class);
 Route::apiResource('books', BookController::class);
 
-Route::resource('/borrowedbook', BorrowedBookController::class);
-Route::resource('/returnedbook', ReturnedBookController::class);
+Route::apiResource('/borrowedbook', BorrowedBookController::class);
+Route::apiResource('/returnedbook', ReturnedBookController::class);
 
 Route::get('/categories', [CategoryController::class, 'index']);
