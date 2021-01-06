@@ -129,10 +129,10 @@ $response = $client->post(
             'category_id'=> '15',
         ],
         'json' => [
-            'name' => 'hic',
-            'author' => 'assumenda',
-            'copies' => 13,
-            'category_id' => 'vel',
+            'name' => 'asperiores',
+            'author' => 'similique',
+            'copies' => 14,
+            'category_id' => 'alias',
         ],
     ]
 );
@@ -330,10 +330,10 @@ $response = $client->put(
             'category_id'=> '11',
         ],
         'json' => [
-            'name' => 'nesciunt',
-            'author' => 'sint',
-            'copies' => 20,
-            'category_id' => 'dignissimos',
+            'name' => 'totam',
+            'author' => 'blanditiis',
+            'copies' => 6,
+            'category_id' => 'autem',
         ],
     ]
 );
@@ -448,7 +448,7 @@ Category id must exist in the categories table.</p>
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://127.0.0.1:8000/api/books/14',
+    'http://127.0.0.1:8000/api/books/20',
     [
         'headers' => [
             'Content-Type' => 'application/json',

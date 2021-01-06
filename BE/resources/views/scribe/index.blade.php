@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: January 5 2021</li>
+            <li>Last updated: January 6 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -179,10 +179,10 @@ $response = $client-&gt;post(
             'category_id'=&gt; '15',
         ],
         'json' =&gt; [
-            'name' =&gt; 'hic',
-            'author' =&gt; 'assumenda',
-            'copies' =&gt; 13,
-            'category_id' =&gt; 'vel',
+            'name' =&gt; 'asperiores',
+            'author' =&gt; 'similique',
+            'copies' =&gt; 14,
+            'category_id' =&gt; 'alias',
         ],
     ]
 );
@@ -358,10 +358,10 @@ $response = $client-&gt;put(
             'category_id'=&gt; '11',
         ],
         'json' =&gt; [
-            'name' =&gt; 'nesciunt',
-            'author' =&gt; 'sint',
-            'copies' =&gt; 20,
-            'category_id' =&gt; 'dignissimos',
+            'name' =&gt; 'totam',
+            'author' =&gt; 'blanditiis',
+            'copies' =&gt; 6,
+            'category_id' =&gt; 'autem',
         ],
     ]
 );
@@ -466,7 +466,7 @@ Category id must exist in the categories table.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://127.0.0.1:8000/api/books/14',
+    'http://127.0.0.1:8000/api/books/20',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -622,90 +622,6 @@ print_r(json_decode((string) $body));</code></pre>
  <b><code>api/borrowedbook</code></b>
 </p>
 </form>
-<h2>[GET] Retrieve specific borrowed book by id.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-php">
-$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://127.0.0.1:8000/api/borrowedbook/5',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "id": 5,
-    "patron_id": 6,
-    "copies": 12,
-    "book_id": 12,
-    "created_at": "2021-01-04T14:36:00.000000Z",
-    "updated_at": "2021-01-04T14:36:00.000000Z",
-    "patron": {
-        "id": 6,
-        "last_name": "Christiansen",
-        "first_name": "Delphia",
-        "middle_name": "Kessler",
-        "email": "dmcclure@hotmail.com",
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-04T14:36:00.000000Z"
-    },
-    "book": {
-        "id": 12,
-        "name": "rerum",
-        "author": "Garnet Parisian",
-        "copies": 110,
-        "category_id": 12,
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-04T14:36:00.000000Z",
-        "category": {
-            "id": 12,
-            "category": "Science",
-            "created_at": "2021-01-04T14:36:00.000000Z",
-            "updated_at": "2021-01-04T14:36:00.000000Z"
-        }
-    }
-}</code></pre>
-<blockquote>
-<p>Example response (404):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Borrowed book not found"
-}</code></pre>
-<div id="execution-results-GETapi-borrowedbook--id-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-borrowedbook--id-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-borrowedbook--id-"></code></pre>
-</div>
-<div id="execution-error-GETapi-borrowedbook--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-borrowedbook--id-"></code></pre>
-</div>
-<form id="form-GETapi-borrowedbook--id-" data-method="GET" data-path="api/borrowedbook/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-borrowedbook--id-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-borrowedbook--id-" onclick="tryItOut('GETapi-borrowedbook--id-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-borrowedbook--id-" onclick="cancelTryOut('GETapi-borrowedbook--id-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-borrowedbook--id-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/borrowedbook/{id}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-borrowedbook--id-" data-component="url" required  hidden>
-<br>
-integer Refers to the book id.</p>
-</form>
 <h2>[POST] Stores Borrowedbook.</h2>
 <p>Stores borrowed book data to the database and update the book copies as well.</p>
 <blockquote>
@@ -732,8 +648,8 @@ $response = $client-&gt;post(
             null,
             [],
             [
-                'book_id' =&gt; 'rem',
-                'copies' =&gt; 'qui',
+                'book_id' =&gt; 'ea',
+                'copies' =&gt; 'magnam',
                 'patron_id' =&gt; $o[0],
             ],
             []
@@ -817,6 +733,95 @@ Must not exceed copies of book.</p>
 <br>
 </p>
 
+</form>
+<h2>[GET] Retrieve specific borrowed book by id.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1:8000/api/borrowedbook/aut',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 5,
+    "patron_id": 6,
+    "copies": 12,
+    "book_id": 12,
+    "created_at": "2021-01-04T14:36:00.000000Z",
+    "updated_at": "2021-01-04T14:36:00.000000Z",
+    "patron": {
+        "id": 6,
+        "last_name": "Christiansen",
+        "first_name": "Delphia",
+        "middle_name": "Kessler",
+        "email": "dmcclure@hotmail.com",
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-04T14:36:00.000000Z"
+    },
+    "book": {
+        "id": 12,
+        "name": "rerum",
+        "author": "Garnet Parisian",
+        "copies": 110,
+        "category_id": 12,
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-04T14:36:00.000000Z",
+        "category": {
+            "id": 12,
+            "category": "Science",
+            "created_at": "2021-01-04T14:36:00.000000Z",
+            "updated_at": "2021-01-04T14:36:00.000000Z"
+        }
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Borrowed book not found"
+}</code></pre>
+<div id="execution-results-GETapi-borrowedbook--borrowedbook-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-borrowedbook--borrowedbook-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-borrowedbook--borrowedbook-"></code></pre>
+</div>
+<div id="execution-error-GETapi-borrowedbook--borrowedbook-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-borrowedbook--borrowedbook-"></code></pre>
+</div>
+<form id="form-GETapi-borrowedbook--borrowedbook-" data-method="GET" data-path="api/borrowedbook/{borrowedbook}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-borrowedbook--borrowedbook-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-borrowedbook--borrowedbook-" onclick="tryItOut('GETapi-borrowedbook--borrowedbook-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-borrowedbook--borrowedbook-" onclick="cancelTryOut('GETapi-borrowedbook--borrowedbook-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-borrowedbook--borrowedbook-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/borrowedbook/{borrowedbook}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>borrowedbook</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="borrowedbook" data-endpoint="GETapi-borrowedbook--borrowedbook-" data-component="url" required  hidden>
+<br>
+</p>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-borrowedbook--borrowedbook-" data-component="url" required  hidden>
+<br>
+integer Refers to the book id.</p>
 </form><h1>Patron Controller</h1>
 <h2>[GET] Retrieves all patron.</h2>
 <p>Retrieves all patron from the database.</p>
@@ -908,10 +913,10 @@ $response = $client-&gt;post(
             'email'=&gt; 'yvansabay61131@gmail.com',
         ],
         'json' =&gt; [
-            'last_name' =&gt; 'ut',
-            'first_name' =&gt; 'cupiditate',
-            'middle_name' =&gt; 'placeat',
-            'email' =&gt; 'feil.casandra@example.net',
+            'last_name' =&gt; 'voluptatibus',
+            'first_name' =&gt; 'et',
+            'middle_name' =&gt; 'quasi',
+            'email' =&gt; 'lkoch@example.com',
         ],
     ]
 );
@@ -1082,10 +1087,10 @@ $response = $client-&gt;put(
             'email'=&gt; 'ttillman@hotmail.com',
         ],
         'json' =&gt; [
-            'last_name' =&gt; 'occaecati',
-            'first_name' =&gt; 'architecto',
-            'middle_name' =&gt; 'ex',
-            'email' =&gt; 'ed68@example.net',
+            'last_name' =&gt; 'sed',
+            'first_name' =&gt; 'veniam',
+            'middle_name' =&gt; 'distinctio',
+            'email' =&gt; 'micah04@example.org',
         ],
     ]
 );
@@ -1193,7 +1198,7 @@ The value must be a valid email address.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://127.0.0.1:8000/api/patrons/et',
+    'http://127.0.0.1:8000/api/patrons/vero',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1242,157 +1247,6 @@ print_r(json_decode((string) $body));</code></pre>
 <br>
 integer Refers to the id of the patron.</p>
 </form><h1>Returned Book Controller</h1>
-<h2>[POST] Stores Returned book.</h2>
-<p>Stores returned book data and updates the borrowed book and book copies as well.</p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-php">
-$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://127.0.0.1:8000/api/returnedbook',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'book_id' =&gt; 12,
-            'copies' =&gt; 10,
-            'patron_id' =&gt; 10,
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Book returned successfully!"
-}</code></pre>
-<div id="execution-results-POSTapi-returnedbook" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-returnedbook"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-returnedbook"></code></pre>
-</div>
-<div id="execution-error-POSTapi-returnedbook" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-returnedbook"></code></pre>
-</div>
-<form id="form-POSTapi-returnedbook" data-method="POST" data-path="api/returnedbook" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-returnedbook', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-returnedbook" onclick="tryItOut('POSTapi-returnedbook');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-returnedbook" onclick="cancelTryOut('POSTapi-returnedbook');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-returnedbook" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/returnedbook</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>book_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="book_id" data-endpoint="POSTapi-returnedbook" data-component="body" required  hidden>
-<br>
-Book id must exist in the borrowed book table.</p>
-<p>
-<b><code>copies</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="copies" data-endpoint="POSTapi-returnedbook" data-component="body" required  hidden>
-<br>
-Must not exceed copies of book.</p>
-<p>
-<b><code>patron_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-<input type="number" name="patron_id" data-endpoint="POSTapi-returnedbook" data-component="body"  hidden>
-<br>
-Must exist in the borrowed books table.</p>
-
-</form>
-<h2>[GET] Retrieves a returned book.</h2>
-<p>Retrieves a returned book data by id from the database.</p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-php">
-$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://127.0.0.1:8000/api/returnedbook/distinctio',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "id": 8,
-    "book_id": 12,
-    "copies": 10,
-    "patron_id": 10,
-    "created_at": "2021-01-05T00:14:25.000000Z",
-    "updated_at": "2021-01-05T00:14:25.000000Z",
-    "book": {
-        "id": 12,
-        "name": "rerum",
-        "author": "Garnet Parisian",
-        "copies": 110,
-        "category_id": 12,
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-05T00:14:25.000000Z",
-        "category": {
-            "id": 12,
-            "category": "Science",
-            "created_at": "2021-01-04T14:36:00.000000Z",
-            "updated_at": "2021-01-04T14:36:00.000000Z"
-        }
-    },
-    "patron": {
-        "id": 10,
-        "last_name": "Auer",
-        "first_name": "Jeanie",
-        "middle_name": "Hansen",
-        "email": "nwiza@block.com",
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-04T14:36:00.000000Z"
-    }
-}</code></pre>
-<blockquote>
-<p>Example response (404):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Returned book not found"
-}</code></pre>
-<div id="execution-results-GETapi-returnedbook--id-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-returnedbook--id-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-returnedbook--id-"></code></pre>
-</div>
-<div id="execution-error-GETapi-returnedbook--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-returnedbook--id-"></code></pre>
-</div>
-<form id="form-GETapi-returnedbook--id-" data-method="GET" data-path="api/returnedbook/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-returnedbook--id-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-returnedbook--id-" onclick="tryItOut('GETapi-returnedbook--id-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-returnedbook--id-" onclick="cancelTryOut('GETapi-returnedbook--id-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-returnedbook--id-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/returnedbook/{id}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-returnedbook--id-" data-component="url" required  hidden>
-<br>
-</p>
-</form>
 <h2>[GET] Retrieves all returned book.</h2>
 <p>Retrieves all returned book data from the database.</p>
 <blockquote>
@@ -1498,6 +1352,157 @@ print_r(json_decode((string) $body));</code></pre>
 <p>
 <small class="badge badge-green">GET</small>
  <b><code>api/returnedbook</code></b>
+</p>
+</form>
+<h2>[POST] Stores Returned book.</h2>
+<p>Stores returned book data and updates the borrowed book and book copies as well.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1:8000/api/returnedbook',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'book_id' =&gt; 12,
+            'copies' =&gt; 10,
+            'patron_id' =&gt; 10,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Book returned successfully!"
+}</code></pre>
+<div id="execution-results-POSTapi-returnedbook" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-returnedbook"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-returnedbook"></code></pre>
+</div>
+<div id="execution-error-POSTapi-returnedbook" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-returnedbook"></code></pre>
+</div>
+<form id="form-POSTapi-returnedbook" data-method="POST" data-path="api/returnedbook" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-returnedbook', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-returnedbook" onclick="tryItOut('POSTapi-returnedbook');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-returnedbook" onclick="cancelTryOut('POSTapi-returnedbook');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-returnedbook" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/returnedbook</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>book_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="book_id" data-endpoint="POSTapi-returnedbook" data-component="body" required  hidden>
+<br>
+Book id must exist in the borrowed book table.</p>
+<p>
+<b><code>copies</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="copies" data-endpoint="POSTapi-returnedbook" data-component="body" required  hidden>
+<br>
+Must not exceed copies of book.</p>
+<p>
+<b><code>patron_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="patron_id" data-endpoint="POSTapi-returnedbook" data-component="body"  hidden>
+<br>
+Must exist in the borrowed books table.</p>
+
+</form>
+<h2>[GET] Retrieves a returned book.</h2>
+<p>Retrieves a returned book data by id from the database.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1:8000/api/returnedbook/consequatur',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 8,
+    "book_id": 12,
+    "copies": 10,
+    "patron_id": 10,
+    "created_at": "2021-01-05T00:14:25.000000Z",
+    "updated_at": "2021-01-05T00:14:25.000000Z",
+    "book": {
+        "id": 12,
+        "name": "rerum",
+        "author": "Garnet Parisian",
+        "copies": 110,
+        "category_id": 12,
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-05T00:14:25.000000Z",
+        "category": {
+            "id": 12,
+            "category": "Science",
+            "created_at": "2021-01-04T14:36:00.000000Z",
+            "updated_at": "2021-01-04T14:36:00.000000Z"
+        }
+    },
+    "patron": {
+        "id": 10,
+        "last_name": "Auer",
+        "first_name": "Jeanie",
+        "middle_name": "Hansen",
+        "email": "nwiza@block.com",
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-04T14:36:00.000000Z"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Returned book not found"
+}</code></pre>
+<div id="execution-results-GETapi-returnedbook--returnedbook-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-returnedbook--returnedbook-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-returnedbook--returnedbook-"></code></pre>
+</div>
+<div id="execution-error-GETapi-returnedbook--returnedbook-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-returnedbook--returnedbook-"></code></pre>
+</div>
+<form id="form-GETapi-returnedbook--returnedbook-" data-method="GET" data-path="api/returnedbook/{returnedbook}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-returnedbook--returnedbook-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-returnedbook--returnedbook-" onclick="tryItOut('GETapi-returnedbook--returnedbook-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-returnedbook--returnedbook-" onclick="cancelTryOut('GETapi-returnedbook--returnedbook-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-returnedbook--returnedbook-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/returnedbook/{returnedbook}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>returnedbook</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="returnedbook" data-endpoint="GETapi-returnedbook--returnedbook-" data-component="url" required  hidden>
+<br>
 </p>
 </form>
     </div>

@@ -119,101 +119,6 @@ print_r(json_decode((string) $body));
 </form>
 
 
-## [GET] Retrieve specific borrowed book by id.
-
-
-
-
-> Example request:
-
-```php
-
-$client = new \GuzzleHttp\Client();
-$response = $client->get(
-    'http://127.0.0.1:8000/api/borrowedbook/5',
-    [
-        'headers' => [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ],
-    ]
-);
-$body = $response->getBody();
-print_r(json_decode((string) $body));
-```
-
-
-> Example response (200):
-
-```json
-{
-    "id": 5,
-    "patron_id": 6,
-    "copies": 12,
-    "book_id": 12,
-    "created_at": "2021-01-04T14:36:00.000000Z",
-    "updated_at": "2021-01-04T14:36:00.000000Z",
-    "patron": {
-        "id": 6,
-        "last_name": "Christiansen",
-        "first_name": "Delphia",
-        "middle_name": "Kessler",
-        "email": "dmcclure@hotmail.com",
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-04T14:36:00.000000Z"
-    },
-    "book": {
-        "id": 12,
-        "name": "rerum",
-        "author": "Garnet Parisian",
-        "copies": 110,
-        "category_id": 12,
-        "created_at": "2021-01-04T14:36:00.000000Z",
-        "updated_at": "2021-01-04T14:36:00.000000Z",
-        "category": {
-            "id": 12,
-            "category": "Science",
-            "created_at": "2021-01-04T14:36:00.000000Z",
-            "updated_at": "2021-01-04T14:36:00.000000Z"
-        }
-    }
-}
-```
-> Example response (404):
-
-```json
-{
-    "message": "Borrowed book not found"
-}
-```
-<div id="execution-results-GETapi-borrowedbook--id-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-borrowedbook--id-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-borrowedbook--id-"></code></pre>
-</div>
-<div id="execution-error-GETapi-borrowedbook--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-borrowedbook--id-"></code></pre>
-</div>
-<form id="form-GETapi-borrowedbook--id-" data-method="GET" data-path="api/borrowedbook/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-borrowedbook--id-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-borrowedbook--id-" onclick="tryItOut('GETapi-borrowedbook--id-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-borrowedbook--id-" onclick="cancelTryOut('GETapi-borrowedbook--id-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-borrowedbook--id-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/borrowedbook/{id}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-borrowedbook--id-" data-component="url" required  hidden>
-<br>
-integer Refers to the book id.</p>
-</form>
-
-
 ## [POST] Stores Borrowedbook.
 
 
@@ -243,8 +148,8 @@ $response = $client->post(
             null,
             [],
             [
-                'book_id' => 'rem',
-                'copies' => 'qui',
+                'book_id' => 'ea',
+                'copies' => 'magnam',
                 'patron_id' => $o[0],
             ],
             []
@@ -332,6 +237,106 @@ Must not exceed copies of book.</p>
 <br>
 </p>
 
+</form>
+
+
+## [GET] Retrieve specific borrowed book by id.
+
+
+
+
+> Example request:
+
+```php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->get(
+    'http://127.0.0.1:8000/api/borrowedbook/aut',
+    [
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ],
+    ]
+);
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 5,
+    "patron_id": 6,
+    "copies": 12,
+    "book_id": 12,
+    "created_at": "2021-01-04T14:36:00.000000Z",
+    "updated_at": "2021-01-04T14:36:00.000000Z",
+    "patron": {
+        "id": 6,
+        "last_name": "Christiansen",
+        "first_name": "Delphia",
+        "middle_name": "Kessler",
+        "email": "dmcclure@hotmail.com",
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-04T14:36:00.000000Z"
+    },
+    "book": {
+        "id": 12,
+        "name": "rerum",
+        "author": "Garnet Parisian",
+        "copies": 110,
+        "category_id": 12,
+        "created_at": "2021-01-04T14:36:00.000000Z",
+        "updated_at": "2021-01-04T14:36:00.000000Z",
+        "category": {
+            "id": 12,
+            "category": "Science",
+            "created_at": "2021-01-04T14:36:00.000000Z",
+            "updated_at": "2021-01-04T14:36:00.000000Z"
+        }
+    }
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Borrowed book not found"
+}
+```
+<div id="execution-results-GETapi-borrowedbook--borrowedbook-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-borrowedbook--borrowedbook-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-borrowedbook--borrowedbook-"></code></pre>
+</div>
+<div id="execution-error-GETapi-borrowedbook--borrowedbook-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-borrowedbook--borrowedbook-"></code></pre>
+</div>
+<form id="form-GETapi-borrowedbook--borrowedbook-" data-method="GET" data-path="api/borrowedbook/{borrowedbook}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-borrowedbook--borrowedbook-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-borrowedbook--borrowedbook-" onclick="tryItOut('GETapi-borrowedbook--borrowedbook-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-borrowedbook--borrowedbook-" onclick="cancelTryOut('GETapi-borrowedbook--borrowedbook-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-borrowedbook--borrowedbook-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/borrowedbook/{borrowedbook}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>borrowedbook</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="borrowedbook" data-endpoint="GETapi-borrowedbook--borrowedbook-" data-component="url" required  hidden>
+<br>
+</p>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-borrowedbook--borrowedbook-" data-component="url" required  hidden>
+<br>
+integer Refers to the book id.</p>
 </form>
 
 
