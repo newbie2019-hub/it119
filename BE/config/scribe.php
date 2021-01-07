@@ -5,7 +5,7 @@ return [
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
      */
-    'title' => 'BE Api Documentation',
+    'title' => 'BE API Documentation for Library Management',
 
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
@@ -48,7 +48,7 @@ return [
             'include' => [
                 'books.index', 'books.store', 'books.destroy', 'books.update', 'books.show',
                 'patrons.index', 'patrons.store', 'patrons.destroy', 'patrons.update', 'patrons.show',
-                'api/borrowedbook', 'api/borrowedbook/*',
+                'api/borrowedbook', 'api/borrowedbook/*', 'api/categories',
                 'api/returnedbook', 'api/returnedbook/*',
             ],
 

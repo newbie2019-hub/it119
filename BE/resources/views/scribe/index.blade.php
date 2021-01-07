@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>BE Api Documentation</title>
+    <title>BE API Documentation for Library Management</title>
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: January 6 2021</li>
+            <li>Last updated: January 7 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -179,10 +179,10 @@ $response = $client-&gt;post(
             'category_id'=&gt; '15',
         ],
         'json' =&gt; [
-            'name' =&gt; 'asperiores',
-            'author' =&gt; 'similique',
-            'copies' =&gt; 14,
-            'category_id' =&gt; 'alias',
+            'name' =&gt; 'earum',
+            'author' =&gt; 'commodi',
+            'copies' =&gt; 16,
+            'category_id' =&gt; 'voluptates',
         ],
     ]
 );
@@ -358,10 +358,10 @@ $response = $client-&gt;put(
             'category_id'=&gt; '11',
         ],
         'json' =&gt; [
-            'name' =&gt; 'totam',
-            'author' =&gt; 'blanditiis',
-            'copies' =&gt; 6,
-            'category_id' =&gt; 'autem',
+            'name' =&gt; 'dolorem',
+            'author' =&gt; 'exercitationem',
+            'copies' =&gt; 13,
+            'category_id' =&gt; 'minus',
         ],
     ]
 );
@@ -466,7 +466,7 @@ Category id must exist in the categories table.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://127.0.0.1:8000/api/books/20',
+    'http://127.0.0.1:8000/api/books/11',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -648,8 +648,8 @@ $response = $client-&gt;post(
             null,
             [],
             [
-                'book_id' =&gt; 'ea',
-                'copies' =&gt; 'magnam',
+                'book_id' =&gt; 'consectetur',
+                'copies' =&gt; 'nam',
                 'patron_id' =&gt; $o[0],
             ],
             []
@@ -741,7 +741,7 @@ Must not exceed copies of book.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://127.0.0.1:8000/api/borrowedbook/aut',
+    'http://127.0.0.1:8000/api/borrowedbook/modi',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -822,6 +822,84 @@ print_r(json_decode((string) $body));</code></pre>
 <input type="text" name="id" data-endpoint="GETapi-borrowedbook--borrowedbook-" data-component="url" required  hidden>
 <br>
 integer Refers to the book id.</p>
+</form><h1>Categories Controller</h1>
+<h2>[GET] Retrieves all categories.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1:8000/api/categories',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 3,
+        "category": "Programming",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    },
+    {
+        "id": 7,
+        "category": "Fiction",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    },
+    {
+        "id": 8,
+        "category": "Horror",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    },
+    {
+        "id": 9,
+        "category": "Novel",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    },
+    {
+        "id": 12,
+        "category": "Science",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    },
+    {
+        "id": 16,
+        "category": "Biography",
+        "created_at": "2021-01-06T23:39:19.000000Z",
+        "updated_at": "2021-01-06T23:39:19.000000Z"
+    }
+]</code></pre>
+<div id="execution-results-GETapi-categories" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-categories"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-categories"></code></pre>
+</div>
+<div id="execution-error-GETapi-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-categories"></code></pre>
+</div>
+<form id="form-GETapi-categories" data-method="GET" data-path="api/categories" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories" onclick="tryItOut('GETapi-categories');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories" onclick="cancelTryOut('GETapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/categories</code></b>
+</p>
 </form><h1>Patron Controller</h1>
 <h2>[GET] Retrieves all patron.</h2>
 <p>Retrieves all patron from the database.</p>
@@ -913,10 +991,10 @@ $response = $client-&gt;post(
             'email'=&gt; 'yvansabay61131@gmail.com',
         ],
         'json' =&gt; [
-            'last_name' =&gt; 'voluptatibus',
-            'first_name' =&gt; 'et',
-            'middle_name' =&gt; 'quasi',
-            'email' =&gt; 'lkoch@example.com',
+            'last_name' =&gt; 'facere',
+            'first_name' =&gt; 'qui',
+            'middle_name' =&gt; 'hic',
+            'email' =&gt; 'pouros.larue@example.com',
         ],
     ]
 );
@@ -1087,10 +1165,10 @@ $response = $client-&gt;put(
             'email'=&gt; 'ttillman@hotmail.com',
         ],
         'json' =&gt; [
-            'last_name' =&gt; 'sed',
-            'first_name' =&gt; 'veniam',
-            'middle_name' =&gt; 'distinctio',
-            'email' =&gt; 'micah04@example.org',
+            'last_name' =&gt; 'accusamus',
+            'first_name' =&gt; 'laborum',
+            'middle_name' =&gt; 'sit',
+            'email' =&gt; 'cdaugherty@example.org',
         ],
     ]
 );
@@ -1198,7 +1276,7 @@ The value must be a valid email address.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://127.0.0.1:8000/api/patrons/vero',
+    'http://127.0.0.1:8000/api/patrons/vel',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1428,7 +1506,7 @@ Must exist in the borrowed books table.</p>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://127.0.0.1:8000/api/returnedbook/consequatur',
+    'http://127.0.0.1:8000/api/returnedbook/odio',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',

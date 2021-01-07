@@ -203,7 +203,7 @@ Retrieves a returned book data by id from the database.
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://127.0.0.1:8000/api/returnedbook/consequatur',
+    'http://127.0.0.1:8000/api/returnedbook/odio',
     [
         'headers' => [
             'Content-Type' => 'application/json',

@@ -148,8 +148,8 @@ $response = $client->post(
             null,
             [],
             [
-                'book_id' => 'ea',
-                'copies' => 'magnam',
+                'book_id' => 'consectetur',
+                'copies' => 'nam',
                 'patron_id' => $o[0],
             ],
             []
@@ -251,7 +251,7 @@ Must not exceed copies of book.</p>
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://127.0.0.1:8000/api/borrowedbook/aut',
+    'http://127.0.0.1:8000/api/borrowedbook/modi',
     [
         'headers' => [
             'Content-Type' => 'application/json',

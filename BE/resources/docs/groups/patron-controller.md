@@ -104,10 +104,10 @@ $response = $client->post(
             'email'=> 'yvansabay61131@gmail.com',
         ],
         'json' => [
-            'last_name' => 'voluptatibus',
-            'first_name' => 'et',
-            'middle_name' => 'quasi',
-            'email' => 'lkoch@example.com',
+            'last_name' => 'facere',
+            'first_name' => 'qui',
+            'middle_name' => 'hic',
+            'email' => 'pouros.larue@example.com',
         ],
     ]
 );
@@ -299,10 +299,10 @@ $response = $client->put(
             'email'=> 'ttillman@hotmail.com',
         ],
         'json' => [
-            'last_name' => 'sed',
-            'first_name' => 'veniam',
-            'middle_name' => 'distinctio',
-            'email' => 'micah04@example.org',
+            'last_name' => 'accusamus',
+            'first_name' => 'laborum',
+            'middle_name' => 'sit',
+            'email' => 'cdaugherty@example.org',
         ],
     ]
 );
@@ -420,7 +420,7 @@ Deletes patron from the database based on id.
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://127.0.0.1:8000/api/patrons/vero',
+    'http://127.0.0.1:8000/api/patrons/vel',
     [
         'headers' => [
             'Content-Type' => 'application/json',
