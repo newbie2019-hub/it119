@@ -1,5 +1,5 @@
-<h3> API Documentation was generated with [SCRIBE](https://github.com/knuckleswtf/scribe) </h3>
-<h5 ><i>Note: To view the documentation proceed to APP_URL/docs </i></h5>
+## API Documentation was generated with [SCRIBE](https://github.com/knuckleswtf/scribe)
+### Note: To view the documentation proceed to APP_URL/docs 
 
 <h3>Scribe</h3>
 
