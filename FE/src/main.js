@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from './router'
 import App from './views/App.vue'
+import store from './store'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import Toast from "vue-toastification";
@@ -21,6 +22,6 @@ Vue.use(Toast, {
 });
 
 new Vue({
-  router,
+  router, store,
   render: function (h) { return h(App) }
 }).$mount('#app')

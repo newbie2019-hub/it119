@@ -6,7 +6,7 @@
         <div class="col-11 col-sm-11 col-md-11 col-lg-11">
           <div class="row justify-content-end mr-1 mb-3">
             <button
-              @click="showAddModal"
+              v-on:click="$bvModal.show('addModal')"
               class="btn rounded-pill btn-outline-primary btn-sm"
             >
               Add Patron
@@ -27,31 +27,24 @@
                   <tr v-for="(patron, i) in patrons" :key="i">
                     <td>
                       {{
-                        patron.firstname +
+                        patron.first_name +
                         " " +
-                        patron.middlename +
+                        patron.middle_name +
                         " " +
-                        patron.lastname
+                        patron.last_name
                       }}
                     </td>
                     <td>{{ patron.email }}</td>
-                    <td>{{ patron.date }}</td>
+                    <td>{{ patron.created_at }}</td>
                     <td>
-                      <a
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteModal"
-                        @click="showEditModal(patron, i)"
-                      >
+                      <a type="button" v-on:click="$bvModal.show('editModal'); index = i; input = {...patron}">
                         <img
                           src="@/assets/images/edit.png"
                           class="mr-2"
-                          height="25" /></a
-                      ><a
+                          height="25" /></a>
+                      <a
                         type="button"
-                        data-toggle="modal"
-                        data-target="#deleteModal"
-                        @click="showDeleteModal(i)"
+                        v-on:click="$bvModal.show('deleteModal'); index = patron.id"
                         ><img
                           src="@/assets/images/delete.png"
                           class="mr-2"
@@ -90,7 +83,7 @@
             class="form-control"
             id="AddPatronFirstName"
             placeholder=""
-            v-model="input.firstname"
+            v-model="input.first_name"
           />
         </div>
         <div class="form-group">
@@ -100,7 +93,7 @@
             class="form-control"
             id="AddPatronMiddleName"
             placeholder=""
-            v-model="input.middlename"
+            v-model="input.middle_name"
           />
         </div>
         <div class="form-group">
@@ -110,7 +103,7 @@
             class="form-control"
             id="AddPatronLastName"
             placeholder=""
-            v-model="input.lastname"
+            v-model="input.last_name"
           />
         </div>
         <div class="form-group">
@@ -141,7 +134,7 @@
             class="form-control"
             id="EditPatronFirstName"
             placeholder=""
-            v-model="editPatron.firstname"
+            v-model="input.first_name"
           />
         </div>
         <div class="form-group">
@@ -151,7 +144,7 @@
             class="form-control"
             id="EditPatronMiddleName"
             placeholder=""
-            v-model="editPatron.middlename"
+            v-model="input.middle_name"
           />
         </div>
         <div class="form-group">
@@ -161,7 +154,7 @@
             class="form-control"
             id="EditPatronLastName"
             placeholder=""
-            v-model="editPatron.lastname"
+            v-model="input.last_name"
           />
         </div>
         <div class="form-group">
@@ -171,12 +164,12 @@
             class="form-control"
             id="EditPatronEmail"
             placeholder=""
-            v-model="editPatron.email"
+            v-model="input.email"
           />
         </div>
       </form>
       <template #modal-footer>
-        <b-button size="sm" variant="primary" v-on:click="updatePatron">
+        <b-button size="sm" variant="primary" v-on:click="patronUpdate">
           Update Patron
         </b-button>
       </template>
@@ -186,11 +179,7 @@
       <p class="my-4">Are you sure you want to delete this patron?</p>
       <template #modal-footer="{ cancel }">
         <b-button variant="info" size="sm" @click="cancel()"> Cancel </b-button>
-        <b-button
-          variant="danger"
-          size="sm"
-          v-on:click.prevent="deletePatron()"
-        >
+        <b-button variant="danger" size="sm" v-on:click="patronDelete">
           Confirm
         </b-button>
       </template>
@@ -199,114 +188,75 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex';
 import {toast} from '@/assets/js/toast/vue-toast'
 export default {
   mixins: [toast],
   mounted() {
     document.title = "Patron Management";
+    this.$root.$on('bv::modal::hide', () => {
+      this.clearFields();
+    })
+    this.getPatrons();
+    this.getPatronData();
+  },
+  computed: {
+    ...mapState('patrons', ['patrons'])
   },
   data() {
     return {
-      patrons: [
-        {
-          firstname: "Yvan",
-          middlename: "C",
-          lastname: "Sabay",
-          email: "sabayyvan2018@gmail.com",
-          date: new Date().toISOString().slice(0, 10),
-        },
-        {
-          firstname: "Cirilo",
-          middlename: "E",
-          lastname: "Bucatcat",
-          email: "cirilobucatcat@gmail.com",
-          date: new Date().toISOString().slice(0, 10),
-        },
-        {
-          firstname: "Melbienri",
-          middlename: "",
-          lastname: "Gabitan",
-          email: "melbienri@gmail.com",
-          date: new Date().toISOString().slice(0, 10),
-        },
-        {
-          firstname: "Derick Justin",
-          middlename: "",
-          lastname: "Durante",
-          email: "derickdurante@gmail.com",
-          date: new Date().toISOString().slice(0, 10),
-        },
-      ],
-      editPatron: {},
-      editIndex: "",
       input: {
-        firstname: "",
-        middlename: "",
-        lastname: "",
+        first_name: "",
+        middle_name: "",
+        last_name: "",
         email: "",
-        date: new Date().toISOString().slice(0, 10),
       },
-      deleteIndex: "",
+      index: "",
     };
   },
   methods: {
-    validEmail(){
-      let regEx = /^([a-z0-9_\-.])+@([a-z0-9_\-.])+\.([a-z0-9]{2,})$/gi
-      let isEmail = regEx.test(this.input.email)
-      return isEmail
+    ...mapActions('patrons', ['getPatrons', 'storePatron', 'deletePatron', 'updatePatron']),
+    ...mapGetters('patrons', ['getPatronData']),
+    async savePatron() {
+      const res = await this.storePatron(this.input)
+      if(res.status == 200){
+        this.$bvModal.hide('addModal');
+        this.showSuccessToast('Patron saved successfully!')
+      }
+      else {
+        this.showError(res.data)
+      }
     },
-    showAddModal() {
-      this.clearFields();
-      this.$bvModal.show("addModal");
+    async patronDelete() {
+      const res = await this.deletePatron(this.index)
+      if(res.status == 200){
+        this.$bvModal.hide('deleteModal')
+      }
+      else {
+        this.showError(res.data)
+      }
     },
-    showDeleteModal(i) {
-      this.deleteIndex = i;
-      this.$bvModal.show("deleteModal");
-    },
-    showEditModal(p, i) {
-      this.editIndex = i;
-      this.editPatron = { ...this.patrons[i] };
-      this.$bvModal.show("editModal");
-    },
-    deletePatron() {
-      this.$delete(this.patrons, this.deleteIndex);
-      this.$bvModal.hide("deleteModal");
-    },
-    savePatron() {
-      if (this.input.firstname.trim() == "")
-        return this.showErrorToast("First Name is required!");
-      if (this.input.lastname.trim() == "")
-        return this.showErrorToast("Last Name is required!");
-      if (this.input.email.trim() == "")
-        return this.showErrorToast("Email is required!");
-      if(!this.validEmail())
-        return this.showErrorToast("Email is Invalid");
-
-      this.patrons.unshift({ ...this.input });
-      this.clearFields();
-      this.$bvModal.hide("addModal");
-      this.showSuccessToast("Patron added successfully");
-    },
-    updatePatron() {
-      if (this.editPatron.firstname.trim() == "")
-        return this.showErrorToast("First Name is required!");
-      if (this.editPatron.lastname.trim() == "")
-        return this.showErrorToast("Last Name is required!");
-      if (this.editPatron.email.trim() == "")
-        return this.showErrorToast("Email is required!");
-      if(!this.validEmail())
-        return this.showErrorToast("Email is Invalid");
-        
-      this.$set(this.patrons, this.editIndex, this.editPatron);
-      this.$bvModal.hide("editModal");
-      this.showSuccessToast("Patron updated successfully");
+    async patronUpdate(){
+      const res = await this.updatePatron({data: {...this.input}, index: this.index})
+      if(res.status == 200){
+        this.$bvModal.hide('editModal')
+         this.showSuccessToast('Patron updated successfully!')
+      }
+      else {
+        this.showError(res.data)
+      }
     },
     clearFields() {
-      this.input.firstname = "";
-      this.input.middlename = "";
-      this.input.lastname = "";
+      this.input.first_name = "";
+      this.input.middle_name = "";
+      this.input.last_name = "";
       this.input.email = "";
     },
+    showError(data){
+      for (const key of Object.keys(data)) {
+        this.showErrorToast(data[key][0]); 
+      }
+    }
     
   },
 };

@@ -29,7 +29,7 @@ class PatronRequest extends FormRequest
             'last_name' => 'bail|required|max:255',
             'first_name' => 'bail|required|max:255',
             'middle_name' => 'bail|required|max:255',
-            'email' => 'required|unique:patrons|email'
+            'email' => 'required|email'
         ];
     }
 
